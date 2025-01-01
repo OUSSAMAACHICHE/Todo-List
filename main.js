@@ -9,10 +9,13 @@ const tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 // call the funicton to display tasks on the page••
 displayTasksOnPage(tasksArray);
 
-// trigger addTasks function
+// handle click event
 btn.addEventListener("click", (ev) => {
+  // check if there is a value 
   if (input.value) {
+    // call the function to add task
     addTasksToArray(tasksArray);
+    // empty the input
     input.value = "";
   }
 });
@@ -37,11 +40,12 @@ function addTasksToArray(tasksArray) {
 
   // add the task object to the array
   tasksArray.push(task);
-
+  // call the function to save data to local storage
   saveData(tasksArray);
+  // call the function to display tasks on the page
   displayTasksOnPage(tasksArray);
 }
-
+// display tasks on the page
 function displayTasksOnPage(tasks) {
   container.innerHTML = "";
   tasks.forEach((task, index) => {
@@ -77,7 +81,7 @@ function displayTasksOnPage(tasks) {
     updateTasks(index, updateBtn);
   });
 }
-
+// delete task
 function deleteTask(indexTask, deleteBtn) {
   // add click event
   deleteBtn.addEventListener("click", (e) => {
